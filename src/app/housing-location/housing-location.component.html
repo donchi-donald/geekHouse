@@ -1,0 +1,10 @@
+<section class="listing">
+    <img class="listing-photo" [src]="housingLocation.photo" alt="Exterior photo of {{housingLocation.name}}">
+    <h2 class="listing-heading">{{ housingLocation.name }}</h2>
+    <p class="listing-location">{{ housingLocation.city}}, {{housingLocation.state }}</p>
+    <div class="listing-footer">
+        <a [routerLink]="['/details', housingLocation.id]">Learn More</a>
+        <button class="delete-btn" (click)="delete(housingLocation.id)" type="button">Delete</button>
+    </div>
+
+</section>
