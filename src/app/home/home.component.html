@@ -7,7 +7,9 @@
   <section class="results">
     <app-housing-location 
         *ngFor="let housingLocation of housingLocationList"
-        [housingLocation]="housingLocation">
+        [housingLocation]="housingLocation"
+        (onDelete)="deleteHousingLocation(housingLocation.id)"
+        >
 
     </app-housing-location>
   </section>

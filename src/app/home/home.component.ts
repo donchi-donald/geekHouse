@@ -16,4 +16,8 @@ export class HomeComponent {
     this.housingLocationList = this.housingService.getAllHousingLocations();
   }
 
+  deleteHousingLocation(i: number) {
+    this.housingService.deleteHousingLocationById(i);
+  }
+
 }
