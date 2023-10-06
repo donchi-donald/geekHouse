@@ -9,13 +9,15 @@ import { HousingService } from '../housing.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  housingLocationList: HousingLocation[] = [];
   housingService: HousingService = inject(HousingService);
   filteredLocationList: HousingLocation[] = [];
 
   constructor() {
-    this.housingLocationList = this.housingService.getAllHousingLocations();
-    this.filteredLocationList = this.housingLocationList;
+   this.housingService.getAllHousingLocations().then( (housingLocationList: HousingLocation[]) => {
+      this.housingService.housingLocationList = housingLocationList;
+      this.filteredLocationList = housingLocationList;
+    });
+    this.filteredLocationList = this.housingService.housingLocationList;
   }
 
   deleteHousingLocation(i: number) {
@@ -24,10 +26,10 @@ export class HomeComponent {
 
   filterResults(text: string) {
     if (!text) {
-      this.filteredLocationList = this.housingLocationList;
+      this.filteredLocationList = this.housingService.housingLocationList;
     }
   
-    this.filteredLocationList = this.housingLocationList.filter(
+    this.filteredLocationList = this.housingService.housingLocationList.filter(
       housingLocation => housingLocation?.city.toLowerCase().includes(text.toLowerCase())
     );
   }
